@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Game_test">
         <activity
+            android:name=".Cheat"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
