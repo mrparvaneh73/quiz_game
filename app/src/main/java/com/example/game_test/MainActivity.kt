@@ -1,24 +1,17 @@
 package com.example.game_test
 
-import android.annotation.SuppressLint
 import android.content.Intent
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import com.example.game_test.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity(), View.OnClickListener {
-    private var clicked:Boolean = false
+class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.btncheat.setOnClickListener(this)
-
         firstqus()
 
     }
@@ -29,7 +22,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             btnnext.isEnabled = true
             btnprev.isEnabled = false
             val question = "tehran is capital of iran"
-                tvqus.text=question
+            tvqus.text = question
+            val answer = "true"
+
+            btncheat.setOnClickListener {
+
+                val intent = Intent(this@MainActivity, Cheat::class.java)
+                intent.putExtra("answer", answer)
+                intent.putExtra("question", question)
+                startActivity(intent)
+                btntrue.isEnabled = false
+                btnfalse.isEnabled = false
+            }
+
             btnfalse.setOnClickListener {
                 btntrue.isEnabled = false
                 btnfalse.isEnabled = false
@@ -43,21 +48,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             btnnext.setOnClickListener {
                 secqus()
             }
-            val answer= "true"
-            btncheat.setOnClickListener {
-                val intent=Intent(this@MainActivity,Cheat::class.java)
-                intent.putExtra("answer",answer)
-                intent.putExtra("question",question)
-                startActivity(intent)
-            }
-            if(clicked){
-                btntrue.setOnClickListener {
-                    Toast.makeText(this@MainActivity, "cheating is wrong", Toast.LENGTH_SHORT).show()
-                }
-                btnfalse.setOnClickListener {
-                    Toast.makeText(this@MainActivity, "cheating is wrong", Toast.LENGTH_SHORT).show()
-                }
-            }
+
         }
 
     }
@@ -70,7 +61,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             btntrue.isEnabled = true
             btnfalse.isEnabled = true
             btnprev.isEnabled = true
-
+            val answer = "false"
+            btncheat.setOnClickListener {
+                val intent = Intent(this@MainActivity, Cheat::class.java)
+                intent.putExtra("answer", answer)
+                intent.putExtra("question", question)
+                startActivity(intent)
+                btntrue.isEnabled = false
+                btnfalse.isEnabled = false
+            }
             btnfalse.setOnClickListener {
                 Toast.makeText(this@MainActivity, "correct", Toast.LENGTH_SHORT).show()
                 btntrue.isEnabled = false
@@ -87,13 +86,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             btnprev.setOnClickListener {
                 firstqus()
             }
-            val answer= "false"
-            btncheat.setOnClickListener {
-                val intent=Intent(this@MainActivity,Cheat::class.java)
-                intent.putExtra("answer",answer)
-                intent.putExtra("question",question)
-                startActivity(intent)
-            }
         }
 
     }
@@ -106,11 +98,20 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             btntrue.isEnabled = true
             btnfalse.isEnabled = true
             btnprev.isEnabled = true
+            val answer = "false"
+            btncheat.setOnClickListener {
+                val intent = Intent(this@MainActivity, Cheat::class.java)
+                intent.putExtra("answer", answer)
+                intent.putExtra("question", question)
+                startActivity(intent)
+                btntrue.isEnabled = false
+                btnfalse.isEnabled = false
+            }
             btnprev.setOnClickListener {
                 secqus()
             }
             btnnext.setOnClickListener {
-                forthqus()
+                fourthqus()
             }
 
             btnfalse.setOnClickListener {
@@ -123,26 +124,28 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 btntrue.isEnabled = false
                 btnfalse.isEnabled = false
             }
-            val answer="false"
-            btncheat.setOnClickListener {
-                val intent=Intent(this@MainActivity,Cheat::class.java)
-                intent.putExtra("answer",answer)
-                intent.putExtra("question",question)
-                startActivity(intent)
-            }
 
         }
 
     }
 
-    private fun forthqus() {
+    private fun fourthqus() {
         with(binding) {
-            val question="5+9 = 14"
+            val question = "5+9 = 14"
             tvqus.text = question
             btnnext.isEnabled = true
             btntrue.isEnabled = true
             btnfalse.isEnabled = true
             btnprev.isEnabled = true
+            val answer = "true"
+            btncheat.setOnClickListener {
+                val intent = Intent(this@MainActivity, Cheat::class.java)
+                intent.putExtra("answer", answer)
+                intent.putExtra("question", question)
+                startActivity(intent)
+                btntrue.isEnabled = false
+                btnfalse.isEnabled = false
+            }
             btnprev.setOnClickListener {
                 thirdqus()
             }
@@ -160,30 +163,30 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 btntrue.isEnabled = false
                 btnfalse.isEnabled = false
             }
-            val answer="true"
-            btncheat.setOnClickListener {
-                val intent=Intent(this@MainActivity,Cheat::class.java)
-                intent.putExtra("answer",answer)
-                intent.putExtra("question",question)
-                startActivity(intent)
-            }
+
         }
-
-
-
     }
 
     private fun fifthqus() {
 
         with(binding) {
-            val question="Australia is both a country and a continent"
-            tvqus.text =question
+            val question = "Australia is both a country and a continent"
+            tvqus.text = question
             btnnext.isEnabled = true
             btntrue.isEnabled = true
             btnfalse.isEnabled = true
             btnprev.isEnabled = true
+            val answer = "true"
+            btncheat.setOnClickListener {
+                val intent = Intent(this@MainActivity, Cheat::class.java)
+                intent.putExtra("answer", answer)
+                intent.putExtra("question", question)
+                startActivity(intent)
+                btntrue.isEnabled = false
+                btnfalse.isEnabled = false
+            }
             btnprev.setOnClickListener {
-                forthqus()
+                fourthqus()
             }
             btnnext.setOnClickListener {
                 sixthqus()
@@ -199,13 +202,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 btntrue.isEnabled = false
                 btnfalse.isEnabled = false
             }
-            val answer="true"
-            btncheat.setOnClickListener {
-                val intent = Intent(this@MainActivity, Cheat::class.java)
-                intent.putExtra("answer", answer)
-                intent.putExtra("question", question)
-                startActivity(intent)
-            }
+
 
         }
 
@@ -214,12 +211,21 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun sixthqus() {
         with(binding) {
-            val question="Humans have 4 senses"
-            tvqus.text =question
-                btnnext.isEnabled = true
+            val question = "Humans have 4 senses"
+            tvqus.text = question
+            btnnext.isEnabled = true
             btntrue.isEnabled = true
             btnfalse.isEnabled = true
             btnprev.isEnabled = true
+            val answer = "false"
+            btncheat.setOnClickListener {
+                val intent = Intent(this@MainActivity, Cheat::class.java)
+                intent.putExtra("answer", answer)
+                intent.putExtra("question", question)
+                startActivity(intent)
+                btntrue.isEnabled = false
+                btnfalse.isEnabled = false
+            }
             btnprev.setOnClickListener {
                 fifthqus()
             }
@@ -237,13 +243,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 btntrue.isEnabled = false
                 btnfalse.isEnabled = false
             }
-            val answer="false"
-            btncheat.setOnClickListener {
-                val intent=Intent(this@MainActivity,Cheat::class.java)
-                intent.putExtra("answer",answer)
-                intent.putExtra("question",question)
-                startActivity(intent)
-            }
+
         }
 
     }
@@ -251,12 +251,21 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private fun seventhqus() {
 
         with(binding) {
-            val question="you need oxygen for breathing"
-            tvqus.text =question
+            val question = "you need oxygen for breathing"
+            tvqus.text = question
             btnnext.isEnabled = true
             btntrue.isEnabled = true
             btnfalse.isEnabled = true
             btnprev.isEnabled = true
+            val answer = "true"
+            btncheat.setOnClickListener {
+                val intent = Intent(this@MainActivity, Cheat::class.java)
+                intent.putExtra("answer", answer)
+                intent.putExtra("question", question)
+                startActivity(intent)
+                btntrue.isEnabled = false
+                btnfalse.isEnabled = false
+            }
             btnprev.setOnClickListener {
                 sixthqus()
             }
@@ -274,25 +283,28 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 btntrue.isEnabled = false
                 btnfalse.isEnabled = false
             }
-            val answer="true"
-            btncheat.setOnClickListener {
-                val intent=Intent(this@MainActivity,Cheat::class.java)
-                intent.putExtra("answer",answer)
-                intent.putExtra("question",question)
-                startActivity(intent)
-            }
+
         }
 
     }
 
     private fun eighthqus() {
         with(binding) {
-            val question= " The national flag of America has stars and stripes on it."
+            val question = " The national flag of America has stars and stripes on it."
             tvqus.text = question
             btnnext.isEnabled = true
             btntrue.isEnabled = true
             btnfalse.isEnabled = true
             btnprev.isEnabled = true
+            val answer = "true"
+            btncheat.setOnClickListener {
+                val intent = Intent(this@MainActivity, Cheat::class.java)
+                intent.putExtra("answer", answer)
+                intent.putExtra("question", question)
+                startActivity(intent)
+                btntrue.isEnabled = false
+                btnfalse.isEnabled = false
+            }
             btnprev.setOnClickListener {
                 seventhqus()
             }
@@ -310,25 +322,28 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 btnfalse.isEnabled = false
 
             }
-            val answer="true"
-            btncheat.setOnClickListener {
-                val intent=Intent(this@MainActivity,Cheat::class.java)
-                intent.putExtra("answer",answer)
-                intent.putExtra("question",question)
-                startActivity(intent)
-            }
+
         }
 
     }
 
     private fun ninthqus() {
         with(binding) {
-            val question="Baby panda is bigger than a mouse after being born"
-            tvqus.text=question
+            val question = "Baby panda is bigger than a mouse after being born"
+            tvqus.text = question
             btnnext.isEnabled = true
             btntrue.isEnabled = true
             btnfalse.isEnabled = true
             btnprev.isEnabled = true
+            val answer = "false"
+            btncheat.setOnClickListener {
+                val intent = Intent(this@MainActivity, Cheat::class.java)
+                intent.putExtra("answer", answer)
+                intent.putExtra("question", question)
+                startActivity(intent)
+                btntrue.isEnabled = false
+                btnfalse.isEnabled = false
+            }
             btnprev.setOnClickListener {
                 eighthqus()
             }
@@ -347,25 +362,28 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 btnfalse.isEnabled = false
 
             }
-            val answer="false"
-            btncheat.setOnClickListener {
-                val intent=Intent(this@MainActivity,Cheat::class.java)
-                intent.putExtra("answer",answer)
-                intent.putExtra("question",question)
-                startActivity(intent)
-            }
+
         }
 
     }
 
     private fun tenthqus() {
         with(binding) {
-            val question="The smallest particle of an element is the molecule"
+            val question = "The smallest particle of an element is the molecule"
             tvqus.text = question
             btnnext.isEnabled = false
             btntrue.isEnabled = true
             btnfalse.isEnabled = true
             btnprev.isEnabled = true
+            val answer = "false"
+            btncheat.setOnClickListener {
+                val intent = Intent(this@MainActivity, Cheat::class.java)
+                intent.putExtra("answer", answer)
+                intent.putExtra("question", question)
+                startActivity(intent)
+                btntrue.isEnabled = false
+                btnfalse.isEnabled = false
+            }
             btnprev.setOnClickListener {
                 ninthqus()
             }
@@ -380,19 +398,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 btntrue.isEnabled = false
                 btnfalse.isEnabled = false
             }
-            val answer="false"
-            btncheat.setOnClickListener {
-                val intent=Intent(this@MainActivity,Cheat::class.java)
-                intent.putExtra("answer",answer)
-                intent.putExtra("question",question)
-                startActivity(intent)
-            }
+
         }
 
-    }
-
-    override fun onClick(v: View?) {
-        clicked= true
     }
 
 
